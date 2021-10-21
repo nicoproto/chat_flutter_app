@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 
 class ChatScreen extends StatelessWidget {
   @override
@@ -11,6 +13,19 @@ class ChatScreen extends StatelessWidget {
           padding: EdgeInsets.all(8),
           child: Text('This works!'),
         )
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          Firestore.instance
+            .collection('/chats/tepxoohL4oFrb9ZtWdqx/messages')
+            .snapshots().listen((data) {
+              data.documents.forEach((document) {
+                print(document['text']);
+              });
+            });
+
+        },
       ),
     );
   }
