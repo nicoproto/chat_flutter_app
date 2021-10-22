@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class AuthForm extends StatefulWidget {
-  AuthForm(this.submitForm);
+  AuthForm(this.submitForm, this.isLoading);
+
+  final bool isLoading;
 
   final void Function(
     String email,
@@ -104,19 +106,23 @@ class _AuthFormState extends State<AuthForm> {
                       },
                     ),
                     SizedBox(height: 12,),
-                    RaisedButton(
-                      child: Text(_isLogin ? 'Login' : 'Signup'),
-                      onPressed: _trySubmit,
-                    ),
-                    FlatButton(
-                      textColor: Theme.of(context).primaryColor,
-                      onPressed: () {
-                        setState(() {
-                          _isLogin = !_isLogin;
-                        });
-                      },
-                      child: Text(_isLogin ? 'Create new account' : 'I already have an account'),
-                    )
+                    if (widget.isLoading)
+                      CircularProgressIndicator(),
+                    if (!widget.isLoading)
+                      RaisedButton(
+                        child: Text(_isLogin ? 'Login' : 'Signup'),
+                        onPressed: _trySubmit,
+                      ),
+                    if (!widget.isLoading)
+                      FlatButton(
+                        textColor: Theme.of(context).primaryColor,
+                        onPressed: () {
+                          setState(() {
+                            _isLogin = !_isLogin;
+                          });
+                        },
+                        child: Text(_isLogin ? 'Create new account' : 'I already have an account'),
+                      )
                   ],
                 ),
               ),
