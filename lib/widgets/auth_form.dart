@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../widgets/pickers/user_image_picker.dart';
 
 class AuthForm extends StatefulWidget {
   AuthForm(this.submitForm, this.isLoading);
@@ -59,6 +60,8 @@ class _AuthFormState extends State<AuthForm> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
+                    if (!_isLogin)
+                      UserImagePicker(),
                     TextFormField(
                       key: ValueKey('email'),
                       validator: (value) {
