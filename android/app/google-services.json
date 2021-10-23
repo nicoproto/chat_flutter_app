@@ -29,6 +29,13 @@
             {
               "client_id": "465680115876-e8q1cgqgfj0b7ans50q9o1ols4rns97p.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "465680115876-ggr2aob5ju8agc9307jkrpvb1ef801hv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.chatFlutterApp"
+              }
             }
           ]
         }
