@@ -25,7 +25,7 @@ class _AuthScreenState extends State<AuthScreen> {
     bool isLogin,
     BuildContext ctx,
   ) async {
-    AuthResult authResult;
+    UserCredential authResult;
 
     try {
       setState(() {
@@ -47,20 +47,19 @@ class _AuthScreenState extends State<AuthScreen> {
           .child('user_images')
           .child(authResult.user.uid + '.jpg');
 
-        await ref.putFile(image).onComplete;
+        await ref.putFile(image);
 
         final url = await ref.getDownloadURL();
 
-        await Firestore.instance.collection('users')
-          .document(authResult.user.uid)
-          .setData({
+        await FirebaseFirestore.instance
+          .collection('users')
+          .doc(authResult.user.uid)
+          .set({
             'username': username,
             'email': email,
             'image_url': url,
           });
       }
-
-
     } on PlatformException catch (error) {
       var message = 'An error ocurred, please check your credentials!';
 

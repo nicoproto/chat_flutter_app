@@ -4,7 +4,7 @@ const admin = require("firebase-admin");
 admin.initializeApp;
 
 exports.myFunction = functions.firestore
-    .document("chat/{message}")
+    .doc("chat/{message}")
     .onCreate((snapshot, context) => {
       console.log(snapshot.data());
       admin.messaging().sendToTopic("chat", {

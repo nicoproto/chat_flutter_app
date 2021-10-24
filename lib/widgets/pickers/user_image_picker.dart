@@ -20,15 +20,15 @@ class _UserImagePickerState extends State<UserImagePicker> {
     // final pickedImage = await picker.getImage(source: ImageSource.camera);
     // final pickedImageFile = File(pickedImage.path);
 
-    final pickedImageFile = await ImagePicker.pickImage(
+    final pickedImageFile = await ImagePicker().getImage(
       source: ImageSource.camera,
       imageQuality: 50,
       maxWidth: 150,
     );
     setState(() {
-      _pickedImage = pickedImageFile;
+      _pickedImage = File(pickedImageFile.path);
     });
-    widget.imagePickFn(pickedImageFile);
+    widget.imagePickFn(File(pickedImageFile.path));
   }
 
   @override

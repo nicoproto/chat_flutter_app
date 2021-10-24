@@ -1,15 +1,17 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+// import 'package:flutter/services.dart';
 
 import '../widgets/pickers/user_image_picker.dart';
 
 class AuthForm extends StatefulWidget {
-  AuthForm(this.submitForm, this.isLoading);
+  AuthForm(
+    this.submitForm,
+    this.isLoading
+  );
 
   final bool isLoading;
-
   final void Function(
     String email,
     String password,
@@ -25,7 +27,6 @@ class AuthForm extends StatefulWidget {
 
 class _AuthFormState extends State<AuthForm> {
   final _formKey = GlobalKey<FormState>();
-
   var _isLogin = true;
   var _userEmail = '';
   var _userName = '';
@@ -38,7 +39,6 @@ class _AuthFormState extends State<AuthForm> {
 
   void _trySubmit() {
     final isValid = _formKey.currentState.validate();
-
     // Remove the focus so the keyboard hides
     FocusScope.of(context).unfocus();
 
@@ -150,7 +150,9 @@ class _AuthFormState extends State<AuthForm> {
                             _isLogin = !_isLogin;
                           });
                         },
-                        child: Text(_isLogin ? 'Create new account' : 'I already have an account'),
+                        child: Text(_isLogin
+                          ? 'Create new account'
+                          : 'I already have an account'),
                       )
                   ],
                 ),
